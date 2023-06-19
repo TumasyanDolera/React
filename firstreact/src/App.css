@@ -1,0 +1,25 @@
+body{
+  background-image:url(https://cdn.videoplasty.com/animation/pink-particles-background-stock-animation-68422-1280x720.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.Profile{
+  margin-top: 100px;
+  width: 35%;
+  height: 500px;
+  background-color: palevioletred;
+  text-align: center;
+}
+img{
+  
+  border-radius: 50px;
+  width: 50%;
+  height: 270px;
+  margin-top: 50px;
+}
+h1{
+  
+  padding-top: 30px;
+}
+
+
