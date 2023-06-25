@@ -1,7 +1,8 @@
 body{
-  background-image:url(https://cdn.videoplasty.com/animation/pink-particles-background-stock-animation-68422-1280x720.jpg);
-  background-repeat: no-repeat;
+ background-image: url(https://themewagon.com/wp-content/uploads/2021/07/Frame-53-1-1.png);
+ background-repeat: no-repeat;
   background-size: cover;
+
 }
 .Profile{
   margin-top: 100px;
@@ -21,5 +22,108 @@ h1{
   
   padding-top: 30px;
 }
-
-
+.Form{
+  width: 500px;
+  height: 440px;
+  background-color: blueviolet;
+  margin: 0 auto;
+  margin-top: 100px;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+  border-radius: 30px;
+}
+input{
+  margin-left: 100px;
+  width: 300px;
+  height: 30px;
+}
+input:hover{
+  
+  height: 40px;
+  transition: 1s;
+  
+}
+#input1{
+  margin-top: 10px;
+}
+#nav{
+  width: 90%;
+  height: 70px;
+  background-color: aliceblue;
+  margin: 0 auto;
+  background-image:url(https://cdn.videoplasty.com/animation/pink-particles-background-stock-animation-68422-1280x720.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#nav:hover{
+  width: 100%;
+  height: 90px;
+  transition: 1s;
+}
+#AddTask{
+  width: 150px;
+  height: 30px;
+  margin-left: 45%;
+  margin-top: 20px;
+  background-color: pink;
+  text-shadow: 3px 3px 20px white,
+  -2px 1px 30px white;
+  font-size: 20px;
+  color: white;
+}
+#AddTask:hover{
+  width: 200px;
+  height: 40px;
+  background-color: palevioletred;
+  transition: 1s;
+  margin-top: 25px;
+  margin-left: 43%;
+  margin-right: 43%;
+}
+#close{
+  margin: 7px 5px;
+  border: none;
+  margin-left: 430px;
+  background-color: blueviolet;
+  color: white;
+  
+}
+#submit{
+  margin-left: 110px;
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+}
+#submit:hover{
+  color: white;
+  background-color: palevioletred;
+  transition: 1s;
+  width: 120px;
+  margin-left: 100PX;
+  
+}
+#reset{
+  margin-left: 90px;
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+}
+#reset:hover{
+  color: white;
+  background-color: palevioletred;
+  transition: 1s;
+  width: 120px;
+  margin-left: 80PX;
+}
+#button{
+  display: flex;
+  
+}
+#submited{
+  width: 500px;
+  height: 440px;
+  background-color: purple;
+  margin: 0 auto;
+  margin-top: 100px;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+  border-radius: 30px;
+}
