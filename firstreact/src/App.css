@@ -40,7 +40,7 @@ input:hover{
   
   height: 40px;
   transition: 1s;
-  
+   
 }
 #input1{
   margin-top: 10px;
@@ -126,4 +126,101 @@ input:hover{
   margin-top: 100px;
   box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
   border-radius: 30px;
+}
+.Form2{
+  width: 200px;
+  height: 300px;
+  background-color: aqua;
+}
+select{
+  margin-left: 100px;
+  width: 305px;
+  height: 30px;
+}
+select:hover{
+  height: 40px;
+  transition: 1s;
+}
+
+#div{
+  width: 300px;
+  height: 200px;
+  background-color: green;
+}
+.Critical{
+  display: flex;
+  background-color: white;
+  width: 304px;
+  margin-left: 104px;
+}
+#radio{
+   margin-left: 5px;
+  
+}
+#textarea{
+  margin-left: 100px;
+  width: 300px;
+  height: 30px;
+}
+#textarea:hover{
+  height: 40px;
+  transition: 1s;
+}
+.tasksContainer{
+  width: 400px;
+  height: 300px;
+  background-color: palevioletred;
+  margin: 0 auto;
+  margin-top: 100px;
+  box-shadow: black(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+  border-radius: 50px;
+  
+}
+.tasksContainer:hover{
+  width: 500px;
+  height: 400px;
+  transition: 1s;
+}
+.show{
+  text-align: center;
+  text-shadow: 3px 3px 20px white,
+  -2px 1px 30px white;
+  font-size: 40px;
+  color: white;
+  padding-top: 5px;
+}
+.show:hover{
+  font-size: 50px;
+  transition: 1s;
+}
+.show1{
+  
+  margin-left: 40px;
+  color: purple;
+  text-shadow: 3px 3px 20px white,
+  -2px 1px 30px palevioletred;
+}
+.show1:hover{
+  font-size: 30px;
+  transition: 1s;
+}
+.show2{
+  margin-left: 40px;
+  color: purple;
+  text-shadow: 3px 3px 20px white,
+  -2px 1px 30px palevioletred;
+}
+.show2:hover{
+  font-size: 30px;
+  transition: 1s;
+}
+.show3{
+  margin-left: 40px;
+  color: purple;
+  text-shadow: 3px 3px 20px white,
+  -2px 1px 30px palevioletred;
+}
+.show3:hover{
+  font-size: 30px;
+  transition: 1s;
 }
