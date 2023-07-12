@@ -1,4 +1,10 @@
 import React, { PureComponent } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { idGenerator } from '../../utils/utils';
 // import classes from './addNewTask.module.css';
 import PropTypes from 'prop-types';
@@ -9,24 +15,28 @@ import Form from 'react-bootstrap/Form';
 
 
 
-export default class AddNewTask extends PureComponent {
-    state = {
-        toDoList: [],
-        title: '',
-        description: '',
-        importance: '',
-        developer: '',
-        startData: '',
-        finishData: '',
-        
-    };
-   
+class AddNewTaskModal extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            toDoList: [],
+            title: '',
+            description: '',
+            importance: '',
+            developer: '',
+        }
+    }
+
 
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value })
 
     }
-   
+
+    handleRadioChange = (event) => {
+        this.setState({ importance: event.target.name })
+    }
+
     handleSelectChange = (event) => {
         this.setState({
             developer: event.target.value
@@ -44,7 +54,7 @@ export default class AddNewTask extends PureComponent {
         }
 
         let neweObj = {
-            id: idGenerator(),
+            // id: idGenerator(),
             title,
             description,
             importance,
@@ -57,15 +67,6 @@ export default class AddNewTask extends PureComponent {
 
         let toDoList = [...this.state.toDoList];
         toDoList.push(neweObj);
-        this.setState({
-            toDoList,
-            title: '',
-            description: '',
-            importance: '',
-            developer: '',
-            startData: '',
-            finishData: '',
-        })
     }
 
     handleAddKeyDown = (event) => {
@@ -81,88 +82,117 @@ export default class AddNewTask extends PureComponent {
     }
 
     render() {
-        const { title, developer, importance, description, startData, finishData, } = this.state;
-        const { disabledButton } = this.props;
+        const { title, developer, importance, description } = this.state;
+        return (
+            <Modal
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                show={true}
+                onHide={this.props.onClose}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Edit task
+                    </Modal.Title>
 
-        return ( <Form onSubmit={this.handleAddTask} onKeyDown={this.handleAddKeyDown}id="Form">
-                <Form.Group onSubmit={this.handleAddTask} onKeyDown={this.handleAddKeyDown} >
-                    <Form.Label htmlFor="textInput">Title</Form.Label>
-                    <Form.Control type="text" id="Title" placeholder="Title" name="title" value={title} onChange={this.handleInputChange} />
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label htmlFor="textarea">Description</Form.Label>
-                    <Form.Control as="textarea" rows={1} id="TextInput" placeholder="Description" onChange={this.handleInputChange}name={description} />
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label htmlFor="textInput">StartData</Form.Label>
-                    <Form.Control type="date" id="Date" placeholder="StartDate" name={startData} onChange={this.handleInputChange} />
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label htmlFor="textInput">FinishData</Form.Label>
-                    <Form.Control type="date" id="Date" placeholder="FinishDate" name={finishData} onChange={this.handleInputChange} />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label htmlFor="Select">Choose developer </Form.Label>
-                    <Form.Select id="Select" value={developer} onChange={this.handleSelectChange}>
-                        <option value="">Select a developer</option>
-                        <option value="Aksana">Aksana</option>
-                        <option value="Hovo">Hovo</option>
-                        <option value="Vardges">Vardges</option>
-                        <option value="Armen">Armen</option>
-                        <option value="ELizabet">Elizabet</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group >
-                    <Form.Group  >
-                        <Form.Label >
-                            Importance:
-                        </Form.Label>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onKeyDown={this.handleAddKeyDown}>
+                        <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+                            <Form.Label column sm={2}>
+                                Title
+                            </Form.Label>
+                            <Col sm={10}>
+                                <Form.Control type="text" placeholder="Title" name="title" value={title} onChange={this.handleInputChange} />
+                            </Col>
+                        </Form.Group>
 
-                        <Form.Check
+                        <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword" >
+                            <Form.Label column sm={2}>
+                                Description
+                            </Form.Label>
+                            <Col sm={10}>
 
-                            label="low"
-                            type="radio"
-                            name="low"
-                            value="low"
-                            checked={importance === 'low'}
-                            onChange={this.handleRadioChange}
-                        />
+                                    <Form.Control
+                                        controlId="floatingTextarea"
+                                        as="textarea"
+                                        placeholder="Leave a comment here"
+                                        name="description"
+                                        value={description} 
+                                        onChange={this.handleInputChange}
+                                        />
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label as="legend" column sm={2}>
+                                Developer
+                            </Form.Label>
 
-                        <Form.Check
-                            label="medium"
-                            type="radio"
-                            name="medium"
-                            value="medium"
-                            checked={importance === 'medium'}
-                            onChange={this.handleRadioChange}
-                        />
+                            <Col sm={10}>
+                                <Form.Select aria-label="Default select example" value={developer} onChange={this.handleSelectChange}>
+                                    <option value="">Select a developer</option>
+                                    <option value="Aksana">Aksana</option>
+                                    <option value="Hovo">Hovo</option>
+                                    <option value="Vardges">Vardges</option>
+                                    <option value="Armen">Armen</option>
+                                    <option value="ELizabet">Elizabet</option>
+                                </Form.Select>
+                            </Col>
+                        </Form.Group>
+                        <fieldset>
+                            <Form.Group as={Row} className="mb-3">
+                                <Form.Label as="legend" column sm={2}>
+                                    Radios
+                                </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Check
+                                        type="radio"
+                                        label="low"
+                                        name="low"
+                                        id="formHorizontalRadios1"
+                                        checked={importance === "low"}
+                                        onChange={this.handleRadioChange}
+                                    />
+                                    <Form.Check
+                                        type="radio"
+                                        label="medium"
+                                        name="medium"
+                                        id="formHorizontalRadios2"
+                                        checked={importance === "medium"}
+                                        onChange={this.handleRadioChange}
 
-                        <Form.Check
-                            label="high"
-                            type="radio"
-                            name="high"
-                            value="high"
-                            checked={importance === 'high'}
-                            onChange={this.handleRadioChange}
-                        />
+                                    />
+                                    <Form.Check
+                                        type="radio"
+                                        label="high"
+                                        name="high"
+                                        id="formHorizontalRadios3"
+                                        checked={importance === "high"}
+                                        onChange={this.handleRadioChange}
 
-                    </Form.Group>
-                    </Form.Group>
-                    <Button variant="primary" onClick={this.props.handleAddTask}type="submit" disabled={disabledButton} id="Submit">Submit</Button>
-               
-               
-            </Form>
-        )
+                                    />
+                                </Col>
+                            </Form.Group>
+                        </fieldset>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant='primary' onClick={this.handleAddTask}>Add</Button>
+                    <Button variant="secondary" onClick={this.props.onClose}>Cansel</Button>
+                </Modal.Footer>
+            </Modal>
+        );
     }
 
 }
 
 
-AddNewTask.propTypes = {
-    handleAddTask: PropTypes.func,
-    disabledButton: PropTypes.number,
-    // disabledButton:PropTypes.number.isRequired,
-    // disabledButton:PropTypes.oneOf([1,5,6,'kkk', true])
-    // disabledButton:PropTypes.oneOfType([PropTypes.number, PropTypes.array])
+
+AddNewTaskModal.propTypes = {
+    handleAddTask:PropTypes.func,
+    onClose:PropTypes.func
 }
 
+
+export default AddNewTaskModal;
