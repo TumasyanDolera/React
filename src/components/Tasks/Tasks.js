@@ -42,6 +42,12 @@ export default class Tasks extends PureComponent {
                     <Card.Text>
                         {item.description}
                     </Card.Text>
+                    <Card.Text>
+                        {item.startData}
+                    </Card.Text>
+                    <Card.Text>
+                        {item.finishData}
+                    </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                     <ListGroup.Item>{item.importance}</ListGroup.Item>

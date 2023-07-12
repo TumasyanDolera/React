@@ -13,7 +13,8 @@ export default class ToDo extends PureComponent {
         toDoList: [],
         editedTask:null,
         checkedTasks: new Set(),
-        toggleConfirmModal: false
+        toggleConfirmModal: false,
+        
     };
 
 
@@ -89,6 +90,7 @@ export default class ToDo extends PureComponent {
         })
 
     }
+   
 
     handleEditTask =(taskObj)=>{
         this.setState({
@@ -119,6 +121,7 @@ handleSaveEditedTask =(taskObj)=>{
 
         return (
             <Container fluid>
+                
                 <Row className="justify-content-center">
                     <AddNewTask
                         handleAddTask={this.handleAddTask}
