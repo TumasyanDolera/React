@@ -56,14 +56,14 @@ export default class ToDo extends PureComponent {
             body: JSON.stringify(neweObj)
         })
             .then(response => {
-                alert('1')
+              
                 if (!response.ok) {
                     throw response.error
                 }
                 return response.json()
             })
             .then(task => {
-                alert('2')
+                
                 toDoList.push(task);
                 this.setState({
                     toDoList,
@@ -77,14 +77,37 @@ export default class ToDo extends PureComponent {
 
     handleRemoveSingleTask = (taskId) => {
         let toDoList = [...this.state.toDoList];
-
         toDoList = toDoList.filter(item => taskId !== item.id)
+        fetch('http://localhost:3004/tasks/'+ taskId, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify()
+        })
+            .then(response => {
+                
+                if (!response.ok) {
+                    throw response.error
+                }
+                return response.json()
+            })
+            .then(task => {
+               
+                toDoList.delete(task);
+                this.setState({
+                    toDoList,
+                    showNewTaskModal: false
+
+                })
+            })
+            .catch(error => console.log(error))
 
         this.setState({
             toDoList,
         })
 
-    }
+            }
 
     handleCheckedTasks = (taskID) => {
         
@@ -133,23 +156,15 @@ export default class ToDo extends PureComponent {
                 })
                 .catch(error => console.log(error))
     
-    
-    
-            
-        })
-        
+         })
         checkedTasks.clear()
         
         this.setState({
             checkedTasks,
             toDoList,
             toggleConfirmModal: false,
-            
-    } )
-           
-     
-
-    }
+       } )
+}
 
     handleToggleShowCofirmModal = () => {
         this.setState({
@@ -173,13 +188,11 @@ export default class ToDo extends PureComponent {
 
     handleSaveEditedTask = (taskObj) => {
         let toDoList = [...this.state.toDoList];
-
         let index = toDoList.findIndex((item) => item.id === taskObj.id);
         toDoList[index] = {
             ...toDoList[index],
             ...taskObj
         }
-
         this.setState({
             toDoList,
             editedTask: null
@@ -192,14 +205,14 @@ export default class ToDo extends PureComponent {
             body: JSON.stringify(taskObj)
         })
             .then(response => {
-                alert('1')
+                
                 if (!response.ok) {
                     throw response.error
                 }
                 return response.json()
             })
             .then(task => {
-                alert('2')
+                
                 toDoList.push(task);
                 this.setState({
                     toDoList,
@@ -208,11 +221,7 @@ export default class ToDo extends PureComponent {
                 })
             })
             .catch(error => console.log(error))
-
-    
-
-    }
-
+        }
     toggleNewTaskModal = () => {
         this.setState({
             showNewTaskModal: !this.state.showNewTaskModal,
