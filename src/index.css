@@ -1,43 +1,18 @@
-
-#Form{
-  
-  background-color: aqua;
-  width: 30%;
-  height: 500px;
-  margin: 0 auto;
-  border-radius: 30px;
-  padding-top: 20px;
-  margin-top: 110px;
+.nav{
+  background-color: purple;
+  width: 100%;
+  height: 100px;
 }
-#Submit{
-  margin-left: 37%;
-  width: 110px;
-  height: 35px;
+#Add{
+  margin-left: 650px;
+  width: 20%;
+  margin-top: 30px;
+  background-color: palevioletred;
+  border: none;
 }
-#Submit:hover{
-  width: 130px;
-  height: 40px;
-  transition: 1s;
+#Add:hover{
+ transition: 1s;
+  width: 25%;
+  height: 50px;
+ 
 }
-#Date{
-  height: 33px;
-  }
-   #Date:hover{
-    height: 43px;
-    transition: 1s;
-  }
-#Select{
-  height: 33px;
-}
-#Select:hover{
-  height: 43px;
-  transition: 1s;
-}
-
-#Title{
-  height: 33px;
-  }
-   #Title:hover{
-    height: 43px;
-    transition: 1s;
-  }

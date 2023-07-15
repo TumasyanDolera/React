@@ -8,8 +8,6 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { idGenerator } from '../../utils/utils';
 // import classes from './addNewTask.module.css';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 
 
 
@@ -46,9 +44,10 @@ class AddNewTaskModal extends PureComponent {
 
     handleAddTask = (event) => {
         event.preventDefault();
+        alert('0000')
         console.log(this.state)
-        const { title, description, importance, developer, startData, finishData } = this.state;
-        if (!title || !description || !importance || !developer || !startData || !finishData) {
+        const { title, description, importance, developer} = this.state;
+        if (!title || !description || !importance || !developer) {
 
             return;
         }
@@ -59,8 +58,8 @@ class AddNewTaskModal extends PureComponent {
             description,
             importance,
             developer,
-            startData,
-            finishData,
+            // startData,
+            // finishData,
         }
 
         this.props.handleAddTask(neweObj);
@@ -137,6 +136,7 @@ class AddNewTaskModal extends PureComponent {
                                     <option value="Vardges">Vardges</option>
                                     <option value="Armen">Armen</option>
                                     <option value="ELizabet">Elizabet</option>
+                                    <option value="Dolera">Dolera</option>
                                 </Form.Select>
                             </Col>
                         </Form.Group>
@@ -149,6 +149,7 @@ class AddNewTaskModal extends PureComponent {
                                     <Form.Check
                                         type="radio"
                                         label="low"
+                                        value="low"
                                         name="low"
                                         id="formHorizontalRadios1"
                                         checked={importance === "low"}
@@ -158,6 +159,7 @@ class AddNewTaskModal extends PureComponent {
                                         type="radio"
                                         label="medium"
                                         name="medium"
+                                        value="medium"
                                         id="formHorizontalRadios2"
                                         checked={importance === "medium"}
                                         onChange={this.handleRadioChange}
@@ -166,6 +168,7 @@ class AddNewTaskModal extends PureComponent {
                                     <Form.Check
                                         type="radio"
                                         label="high"
+                                        value="high"
                                         name="high"
                                         id="formHorizontalRadios3"
                                         checked={importance === "high"}

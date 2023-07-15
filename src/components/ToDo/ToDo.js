@@ -15,6 +15,7 @@ export default class ToDo extends PureComponent {
         checkedTasks: new Set(),
         toggleConfirmModal: false,
         showNewTaskModal: false,
+        deleteTasks: false,
     };
 
     componentDidMount() {
@@ -32,7 +33,6 @@ export default class ToDo extends PureComponent {
             })
             .then(tasks => {
                 let toDoList = [...this.state.toDoList, ...tasks];
-                // toDoList.push(tasks);
                 this.setState({
                     toDoList,
                 })
@@ -43,8 +43,10 @@ export default class ToDo extends PureComponent {
 
 
     handleAddTask = (neweObj) => {
-        console.log('NNNNNN====>>>>', neweObj)
         let toDoList = [...this.state.toDoList];
+        const { deleteTasks } = this.state;
+        this.setState({
+        deleteTasks: !deleteTasks,})
 
         fetch('http://localhost:3004/tasks', {
             method: 'POST',
@@ -54,12 +56,14 @@ export default class ToDo extends PureComponent {
             body: JSON.stringify(neweObj)
         })
             .then(response => {
+                alert('1')
                 if (!response.ok) {
                     throw response.error
                 }
                 return response.json()
             })
             .then(task => {
+                alert('2')
                 toDoList.push(task);
                 this.setState({
                     toDoList,
@@ -83,39 +87,67 @@ export default class ToDo extends PureComponent {
     }
 
     handleCheckedTasks = (taskID) => {
+        
         let checkedTasks = new Set(this.state.checkedTasks);
-
         if (checkedTasks.has(taskID)) {
             checkedTasks.delete(taskID);
         } else {
             checkedTasks.add(taskID);
         }
-
+        
+        
         this.setState({
             checkedTasks
-        })
-
-    }
+        }
+        )
+     }
 
 
     handleRemovedCheckedTasks = () => {
         let toDoList = [...this.state.toDoList];
         let checkedTasks = new Set(this.state.checkedTasks);
-
         checkedTasks.forEach(itemId => {
             toDoList = toDoList.filter(item => item.id !== itemId)
+            fetch('http://localhost:3004/tasks/'+ itemId, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify()
+            })
+                .then(response => {
+                    alert('1')
+                    if (!response.ok) {
+                        throw response.error
+                    }
+                    return response.json()
+                })
+                .then(task => {
+                    alert('2')
+                    toDoList.delete(task);
+                    this.setState({
+                        toDoList,
+                        showNewTaskModal: false
+    
+                    })
+                })
+                .catch(error => console.log(error))
+    
+    
+    
+            
         })
-
+        
         checkedTasks.clear()
-
+        
         this.setState({
             checkedTasks,
             toDoList,
-            toggleConfirmModal: false
-
-        })
-
-
+            toggleConfirmModal: false,
+            
+    } )
+           
+     
 
     }
 
@@ -152,6 +184,32 @@ export default class ToDo extends PureComponent {
             toDoList,
             editedTask: null
         })
+        fetch('http://localhost:3004/tasks', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(taskObj)
+        })
+            .then(response => {
+                alert('1')
+                if (!response.ok) {
+                    throw response.error
+                }
+                return response.json()
+            })
+            .then(task => {
+                alert('2')
+                toDoList.push(task);
+                this.setState({
+                    toDoList,
+                    showNewTaskModal: false
+
+                })
+            })
+            .catch(error => console.log(error))
+
+    
 
     }
 
@@ -162,25 +220,24 @@ export default class ToDo extends PureComponent {
     }
 
     render() {
-        const { toDoList, checkedTasks, toggleConfirmModal, editedTask, showNewTaskModal } = this.state;
+        const { toDoList, checkedTasks, toggleConfirmModal, editedTask, showNewTaskModal, deleteTasks } = this.state;
 
 
 
         return (
             <Container fluid>
-                
+                <nav className="nav">
                 <Row className="justify-content-center">
-                    <Col className="text-center mt-5">
-                        <Button
+                    <Col>
+                        <Button id="Add"
                             variant="info"
-                            className="w-25"
                             onClick={this.toggleNewTaskModal}
                             disabled={checkedTasks.size}>
                             Add task
                         </Button>
                     </Col>
                 </Row>
-
+                </nav>
                 <Row className="mt-5">
                     {
 
@@ -198,8 +255,9 @@ export default class ToDo extends PureComponent {
                         })
                     }
                 </Row>
-                <Row className="justify-content-center" >
-                    <Button
+                {
+                 deleteTasks && <Row className="justify-content-center" >
+                     <Button
                         onClick={this.handleToggleShowCofirmModal}
                         variant="danger"
                         className="w-25 mt-5"
@@ -207,6 +265,7 @@ export default class ToDo extends PureComponent {
                     >Remove checked tasks</Button>
 
                 </Row>
+                }
                 <Confirm
                     show={toggleConfirmModal}
                     onHide={this.tooggleHide}
@@ -218,7 +277,7 @@ export default class ToDo extends PureComponent {
                     <EditModal
                         onClose={() => this.handleEditTask(null)}
                         editTaskData={editedTask}
-                        onSave={this.handleSaveEditedTask}
+                        onSave={this.handleSaveEditedTask(this.id)}
                     />
                 }
                 {
