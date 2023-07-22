@@ -22,13 +22,5 @@
   "profile": {
     "name": "typicode"
   },
-  "tasks": [
-    {
-      "title": "ssssssssssssss",
-      "description": "ssssssssssssssss",
-      "importance": "medium",
-      "developer": "Hovo",
-      "id": 1
-    }
-  ]
+  "tasks": []
 }

@@ -1,26 +1,77 @@
 body{
-  background-image: url(https://engagiertes-goerlitz.de/uploads/ausschreibung_pexels.jpeg);
+  background-image: url( https://www.atypicalfinance.com/wp-content/uploads/2018/10/Homepage-background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 
 }
 .nav{
-  background-color: wheat;
+  background-color: rgb(54,69,79);
   width: 100%;
   height: 100px;
+
 }
 #Add{
-  margin-left: 650px;
-  width: 20%;
-  margin-top: 20px;
-  background-color: wheat;
+margin-left: 630px;
+margin-top: 50px;
+color: white;
+background-color: rgba(128, 128, 128, 0);
+border: none;
+font-size: 50px;
+}
+#Home{
+  margin-left: 30px;
+  margin-top: 30px;
   color: white;
+  background-color: rgb(54,69,79);;
   border: none;
-  font-size: 30px;
-}
-#Add:hover{
- transition: 1s;
-  width: 25%;
+  font-size: 20px;
   height: 50px;
- 
 }
+#Home:hover{
+  color: gray;
+  transition: 1s;
+}
+#About{
+  margin-left: 30px;
+  margin-top: 30px;
+  color: white;
+  background-color:  rgb(54,69,79);;
+  border: none;
+  font-size: 20px;
+  height: 50px;
+  
+}
+#About:hover{
+  color: gray;
+  transition: 1s;
+}
+p{
+  color: white;
+  text-align: center;
+  margin-left: 250px;
+}
+.img{
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 300px;
+  margin-left: 300px;
+  margin-top: 110px; 
+}
+.we{
+   margin-left: 200px;
+   color: white;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.not{
+  text-align: center;
+  font-size: 450px;
+  color: white;
+}
+.not2{
+  text-align: center;
+  font-size: 50px;
+  color: white;
+}
+

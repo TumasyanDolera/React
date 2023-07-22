@@ -8,6 +8,7 @@ import EditModal from "../EditModal";
 
 
 
+
 export default class ToDo extends PureComponent {
     state = {
         toDoList: [],
@@ -197,7 +198,7 @@ export default class ToDo extends PureComponent {
             toDoList,
             editedTask: null
         })
-        fetch('http://localhost:3004/tasks', {
+        fetch(`http://localhost:3004/tasks/${taskObj.id}`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -235,18 +236,19 @@ export default class ToDo extends PureComponent {
 
         return (
             <Container fluid>
-                <nav className="nav">
-                <Row className="justify-content-center">
+                
+                <Row>
                     <Col>
                         <Button id="Add"
                             variant="info"
                             onClick={this.toggleNewTaskModal}
                             disabled={checkedTasks.size}>
-                            Add task
+                            Add Task
                         </Button>
+                    
                     </Col>
                 </Row>
-                </nav>
+                
                 <Row className="mt-5">
                     {
 
@@ -286,7 +288,7 @@ export default class ToDo extends PureComponent {
                     <EditModal
                         onClose={() => this.handleEditTask(null)}
                         editTaskData={editedTask}
-                        onSave={this.handleSaveEditedTask(this.id)}
+                        onSave={this.handleSaveEditedTask}
                     />
                 }
                 {

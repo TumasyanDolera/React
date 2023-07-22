@@ -6,12 +6,9 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { idGenerator } from '../../utils/utils';
-// import classes from './addNewTask.module.css';
+import classes from './addNewTask.module.css';
 import PropTypes from 'prop-types';
-
-
-
-
+import { faChampagneGlasses } from '@fortawesome/free-solid-svg-icons';
 
 class AddNewTaskModal extends PureComponent {
     constructor(props) {
@@ -83,7 +80,7 @@ class AddNewTaskModal extends PureComponent {
     render() {
         const { title, developer, importance, description } = this.state;
         return (
-            <Modal
+            <Modal className={classes.Form}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
